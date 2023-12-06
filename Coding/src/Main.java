@@ -2,20 +2,36 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // 값을 입력받기 위한 Scanner 객체 생성
         Scanner sc = new Scanner(System.in);
+        int[] inputNumArr = new int[3];
 
-        // 제곱 후의 값을 할당하기 위한 변수 선언
-        int square = 0;
-        // 값의 크기 만큼 순회할 for문
-        for (int i = 0; i < 5; i++) {
-            /// 값을 입력받아 제곱을 위해 값을 담을 변수 num 선언
-            int num = sc.nextInt();
-            // 제곱
-            square += num * num;
+        // 값 3번 입력받기
+        for (int i = 0; i < inputNumArr.length; i++) {
+            inputNumArr[i] = Integer.parseInt(sc.nextLine());
         }
-        // 결과에 담아 나누기 위한 변수 선언
-        int result = square % 10;
-        System.out.println(result);
+
+        // 3번 값 곱하기
+        long total = 1;
+
+        for (int i = 0; i < inputNumArr.length; i++) {
+             total *= inputNumArr[i];
+        }
+
+        // 문자열로 변환
+        String multiplyValue = String.valueOf(total);
+
+        // 값을 담을 변수 선언
+        int[] arrInt = new int[10];
+
+        // getNumericValue 인자로받은 값을 하나씩 꺼내서 주어진 문자의 값을 숫자로 받음
+        for (int i = 0; i < multiplyValue.length(); i++) {
+            int number = Character.getNumericValue(multiplyValue.charAt(i));
+            // number의 값을 꺼내서 number가 담고 있는 값의 해당 하는 인덱스에 카운트++
+            arrInt[number]++;
+        }
+        // 배열 arrInt에 담긴 ++값을 꺼내서 출력
+        for (int count : arrInt) {
+            System.out.println(count);
+        }
     }
 }
