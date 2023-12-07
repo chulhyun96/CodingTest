@@ -3,35 +3,40 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] inputNumArr = new int[3];
 
-        // 값 3번 입력받기
-        for (int i = 0; i < inputNumArr.length; i++) {
-            inputNumArr[i] = Integer.parseInt(sc.nextLine());
+        // 입력을 공백과 함께 받아야함
+        String[] input = sc.nextLine().split(" ");
+
+        // 입력받은 수만큼 배열 생성, 배열에 담고 값을 비교하기 위해서
+        int[] inputNum = new int[input.length];
+
+
+        boolean isAscending = true;
+        boolean isDescending = true;
+
+        // 입력받은 값을 배열에 넣음
+        for (int i = 0; i < inputNum.length; i++) {
+            inputNum[i] = Integer.parseInt(input[i]);
         }
 
-        // 3번 값 곱하기
-        long total = 1;
-
-        for (int i = 0; i < inputNumArr.length; i++) {
-             total *= inputNumArr[i];
+        // 값을 입력받은 배열의 인덱스와 그 다음인덱스를 비교하여 오름차순이라면 asceding
+        // 내림차순 이라면 descending 둘다 아니라면 mixed
+        for (int i = 0; i < inputNum.length -1; i++) {
+            if (inputNum[i] < inputNum[i+1]) {
+                isDescending = false;
+            }
+            if (inputNum[i] > inputNum[i+1]) {
+                isAscending = false;
+            }
         }
-
-        // 문자열로 변환
-        String multiplyValue = String.valueOf(total);
-
-        // 값을 담을 변수 선언
-        int[] arrInt = new int[10];
-
-        // getNumericValue 인자로받은 값을 하나씩 꺼내서 주어진 문자의 값을 숫자로 받음
-        for (int i = 0; i < multiplyValue.length(); i++) {
-            int number = Character.getNumericValue(multiplyValue.charAt(i));
-            // number의 값을 꺼내서 number가 담고 있는 값의 해당 하는 인덱스에 카운트++
-            arrInt[number]++;
+        String result;
+        if (isDescending) {
+            result = "descending";
+        } else if (isAscending) {
+            result = "ascending";
+        } else {
+            result = "mixed";
         }
-        // 배열 arrInt에 담긴 ++값을 꺼내서 출력
-        for (int count : arrInt) {
-            System.out.println(count);
-        }
+        System.out.println(result);
     }
 }
