@@ -4,39 +4,30 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // 입력을 공백과 함께 받아야함
-        String[] input = sc.nextLine().split(" ");
 
-        // 입력받은 수만큼 배열 생성, 배열에 담고 값을 비교하기 위해서
-        int[] inputNum = new int[input.length];
+        while (true) {
+            String line = sc.nextLine();
 
+            String[] lineSplit = line.split(" ");
 
-        boolean isAscending = true;
-        boolean isDescending = true;
+            String num1 = lineSplit[0];
+            String num2 = lineSplit[1];
 
-        // 입력받은 값을 배열에 넣음
-        for (int i = 0; i < inputNum.length; i++) {
-            inputNum[i] = Integer.parseInt(input[i]);
-        }
+            int parseIntNum1 = Integer.parseInt(num1);
+            int parseIntNum2 = Integer.parseInt(num2);
 
-        // 값을 입력받은 배열의 인덱스와 그 다음인덱스를 비교하여 오름차순이라면 asceding
-        // 내림차순 이라면 descending 둘다 아니라면 mixed
-        for (int i = 0; i < inputNum.length -1; i++) {
-            if (inputNum[i] < inputNum[i+1]) {
-                isDescending = false;
+            if (parseIntNum1 == 0 && parseIntNum2 == 0) {
+                break;
             }
-            if (inputNum[i] > inputNum[i+1]) {
-                isAscending = false;
+
+            if (parseIntNum2 % parseIntNum1 == 0) {
+                System.out.println("factor");
+            } else if (parseIntNum1 % parseIntNum2 == 0) {
+                System.out.println("multiple");
+            }
+            else {
+                System.out.println("neither");
             }
         }
-        String result;
-        if (isDescending) {
-            result = "descending";
-        } else if (isAscending) {
-            result = "ascending";
-        } else {
-            result = "mixed";
-        }
-        System.out.println(result);
     }
 }
