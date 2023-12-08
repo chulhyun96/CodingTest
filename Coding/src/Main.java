@@ -16,18 +16,24 @@ public class Main {
             int parseIntNum1 = Integer.parseInt(num1);
             int parseIntNum2 = Integer.parseInt(num2);
 
+            String result;
+
+            //먼저 입력된 수가  0 0인지 검사 (종료를 위해)
             if (parseIntNum1 == 0 && parseIntNum2 == 0) {
                 break;
             }
-
+            // 약수
             if (parseIntNum2 % parseIntNum1 == 0) {
-                System.out.println("factor");
+                result = "factor";
+            // 배수
             } else if (parseIntNum1 % parseIntNum2 == 0) {
-                System.out.println("multiple");
+                result = "multiple";
             }
+            // 둘다 아닌 경우
             else {
-                System.out.println("neither");
+                result = "neither";
             }
+            System.out.println(result);
         }
     }
 }
